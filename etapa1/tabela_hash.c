@@ -10,7 +10,7 @@ void hashInit() {
 
 int hashAddress (char* msg) {
     int address = 1;
-    for (int i = 0; i < TAMANHO_TABELA; i++) {
+    for (int i = 0; i < strlen(msg); ++i) {
         address = (address * msg[i]) % TAMANHO_TABELA + 1;
     }
     return address-1;
@@ -31,7 +31,7 @@ NODO* hashInsert(char* msg, int type) {
     NODO* novo_nodo;
     int address = hashAddress(msg);
 
-    if ((novo_nodo = hashFind(msg) != 0 )) {
+    if ((novo_nodo = hashFind(msg)) != 0 ) {
         return novo_nodo;
     }
     novo_nodo = (NODO*) calloc(1, sizeof(NODO));
